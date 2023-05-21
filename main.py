@@ -6,7 +6,7 @@ scope = "playlist-modify-public"
 
 spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
 
-USER_ID = "your ID"
+USER_ID = "21lcks7yk7q3cgpi52agdxkyq"
 
 
 def get_playlist_id(name):
@@ -25,11 +25,9 @@ def shuffle_playlist(name):
     track_list = [track["track"]["id"] for track in tracks["items"]]
     random.shuffle(track_list)
 
-    new_name = f"{name}"
-    new_playlist = spotify.user_playlist_create(user=USER_ID, name=new_name, public=True)
-    new_playlist_id = new_playlist["id"]
+    new_playlist = spotify.user_playlist_create(user=USER_ID, name=name, public=True)
 
-    spotify.playlist_add_items(playlist_id=new_playlist_id, items=track_list)
+    spotify.playlist_add_items(playlist_id=new_playlist["id"], items=track_list)
 
 
 playlist_name = input("Type in name of the playlist: ")
